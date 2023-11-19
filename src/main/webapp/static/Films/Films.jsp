@@ -1,6 +1,7 @@
 <%@ page import="org.example.Models.Actor" %>
 <%@ page import="org.example.Models.Film" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="org.example.Constants.WebConstants" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 11/13/2023
@@ -36,7 +37,7 @@
   %>
   <tr>
     <td>
-      <a href="http://localhost:8080/JspApi_war/film?id=<%=Integer.toString(film.getId()) %>">
+      <a href="http://localhost:8080/JspApi_war<%=WebConstants.prefix%>/film/<%=Integer.toString(film.getId()) %>">
       <%=Integer.toString(film.getId()) %>
       </a>
     </td>
@@ -47,7 +48,9 @@
   <%
     }
   %>
-
+  <form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/createFilm"%>">
+    <input type="submit" value="Add" />
+  </form>
   </tbody>
 </table>
 </body>

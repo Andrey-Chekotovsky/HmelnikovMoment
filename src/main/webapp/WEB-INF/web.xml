@@ -39,6 +39,31 @@
         <servlet-class>org.example.Servlets.Actor.ActorsDirectorsServlet</servlet-class>
         <load-on-startup>7</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>auth-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.User.AuthServlet</servlet-class>
+        <load-on-startup>8</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>profile-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.User.ProfileServlet</servlet-class>
+        <load-on-startup>9</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>register-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.User.RegisterServlet</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>redact-user-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.User.RedactUserServlet</servlet-class>
+        <load-on-startup>11</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>create-film-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Film.CreateFilmServlet</servlet-class>
+        <load-on-startup>12</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>main-servlet</servlet-name>
         <url-pattern>/main-servlet</url-pattern>
@@ -67,4 +92,43 @@
         <servlet-name>last-years-servlet</servlet-name>
         <url-pattern>/last-years-servlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>auth-servlet</servlet-name>
+        <url-pattern>/auth-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profile-servlet</servlet-name>
+        <url-pattern>/profile-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>register-servlet</servlet-name>
+        <url-pattern>/register-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>redact-user-servlet</servlet-name>
+        <url-pattern>/redact-user-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>create-film-servlet</servlet-name>
+        <url-pattern>/create-film-servlet</url-pattern>
+    </servlet-mapping>
+
+
+
+    <filter>
+        <filter-name>auth-filter</filter-name>
+        <filter-class>org.example.Filters.AuthFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>hidden-filter</filter-name>
+        <filter-class>org.example.Filters.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>auth-filter</filter-name>
+        <url-pattern>/auth-filter</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>hidden-filter</filter-name>
+        <url-pattern>/hidden-filter</url-pattern>
+    </filter-mapping>
 </web-app>

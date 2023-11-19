@@ -27,7 +27,7 @@ public class ActorsDirectorsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("static/Actors.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/static/Actors.jsp");
         req.setAttribute("actors", actorDao.getActorsAndDirectors());
         dispatcher.forward(req, resp);
     }

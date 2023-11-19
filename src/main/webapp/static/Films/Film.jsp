@@ -1,6 +1,7 @@
 <%@ page import="org.example.Models.Film" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.example.Models.Actor" %><%--
+<%@ page import="org.example.Models.Actor" %>
+<%@ page import="org.example.Constants.WebConstants" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 11/13/2023
@@ -30,5 +31,13 @@ Actors: <%
 <%
     }
 %>
+<%
+    String id = WebConstants.getUriId(request.getRequestURI());
+%>
+<form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/film/" + film.getId() %>" method="post">
+    <input type="hidden" name="_method" value="DELETE"><jsp:text /></input>
+    <input type="submit" value="Delete" />
+</form>
+
 </body>
 </html>

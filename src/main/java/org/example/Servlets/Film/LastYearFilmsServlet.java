@@ -27,7 +27,7 @@ public class LastYearFilmsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("static/Films.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/static/Films.jsp");
         req.setAttribute("films", filmDao.thisAndLastYearFilms());
         dispatcher.forward(req, resp);
     }

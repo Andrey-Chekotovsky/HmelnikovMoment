@@ -1,3 +1,4 @@
+<%@ page import="org.example.Constants.WebConstants" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +14,25 @@
 </head>
 <body>
     <h3>Menu</h3>
-    <form action="http://localhost:8080/JspApi_war/directors">
+
+    <form action=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/directors" %>>
         <input type="submit" value="Show directors" />
     </form>
-    <form action="http://localhost:8080/JspApi_war/actors">
+    <form action=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/actors" %>>
         <input type="submit" value="Show actors" />
     </form>
-    <form action="http://localhost:8080/JspApi_war/actors-directors">
+    <form action=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/actors-directors" %>>
         <input type="submit" value="Show actors and directors" />
     </form>
-    <form action="http://localhost:8080/JspApi_war/films">
+    <form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/films" %>">
         <input type="submit" value="Show films" />
     </form>
     Enter years: <input type="text" id="year" value="2021">
     <form>
         <input type="submit" value="Show films" />
+    </form>
+    <form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/profile" %>">
+        <input type="submit" value="Profile" />
     </form>
 </body>
 </html>

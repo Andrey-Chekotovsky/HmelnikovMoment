@@ -1,15 +1,18 @@
 package org.example.Filters;
 
+import org.example.Constants.WebConstants;
 import org.example.Servlets.AuthContext;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Optional;
 
-@WebFilter(urlPatterns = { "/api"})
+@WebFilter(urlPatterns = { "/api/*"})
 public class AuthFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -24,16 +27,18 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        AuthContext authContext = AuthContext.getInstance();
-        String host = servletRequest.getRemoteHost();
+        System.out.println("filter ");
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         Optional<Cookie> authData
-                = authContext.getCookies().stream().filter(cookie -> cookie.getName().equals(host)).findAny();
+                = Arrays.stream(httpRequest.getCookies()).filter(cookie -> cookie.getName()
+                .equals(WebConstants.cookie)).findAny();
         if (!authData.isEmpty()) {
+            System.out.println(authData.get().getMaxAge() + " " + authData.get().getPath());
+            filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
         else {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-            httpResponse.sendRedirect("/login.jsp");
             httpResponse.sendRedirect("http://localhost:8080/JspApi_war/auth");
         }
     }

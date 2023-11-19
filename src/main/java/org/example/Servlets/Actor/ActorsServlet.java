@@ -31,6 +31,7 @@ public class ActorsServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("static/Actors.jsp");
         req.setAttribute("actors", actorDao.getActors());
         dispatcher.forward(req, resp);
+
     }
 
     @Override

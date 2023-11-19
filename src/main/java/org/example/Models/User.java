@@ -1,7 +1,6 @@
 package org.example.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -10,9 +9,16 @@ import lombok.*;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @Entity
-@Table(name = "films")
+@Table(name = "users")
 public class User {
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "nickname")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    private Role role;
 }

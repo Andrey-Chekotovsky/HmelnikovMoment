@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorDao {
@@ -35,6 +36,19 @@ public class ActorDao {
             Actor actor = session.get(Actor.class, id);
             session.getTransaction().commit();
             return actor;
+        }
+    }
+    public List<Actor> getActors(List<Integer> ids)
+    {
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            List<Actor> actors = new ArrayList<>();
+            for (Integer id:
+                 ids) {
+                actors.add(session.get(Actor.class, id));
+            }
+            session.getTransaction().commit();
+            return actors;
         }
     }
     public List<Actor> getActors() {

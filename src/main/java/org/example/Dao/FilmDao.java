@@ -3,6 +3,7 @@ package org.example.Dao;
 import org.example.Models.Actor;
 import org.example.Models.Director;
 import org.example.Models.Film;
+import org.example.Models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -40,7 +41,16 @@ public class FilmDao {
             session.getTransaction().commit();
             return film;
         }
+    }public void delete(int id)
+    {
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            Film film = session.get(Film.class, id);
+            session.delete(film);
+            session.getTransaction().commit();
+        }
     }
+
     public List<Film> getFilms() {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
