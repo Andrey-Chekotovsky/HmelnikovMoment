@@ -24,7 +24,11 @@ public class Film {
     private String name;
     @Column(name = "issued_at")
     private Date issuedAt;
-    @ManyToMany(mappedBy = "films")
+    @ManyToMany
+    @JoinTable(
+            name = "actor_film",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private List<Actor> actors;
 
     @Override

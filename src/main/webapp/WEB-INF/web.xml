@@ -30,13 +30,13 @@
         <load-on-startup>5</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>last-years-servlet</servlet-name>
-        <servlet-class>org.example.Servlets.Film.LastYearFilmsServlet</servlet-class>
+        <servlet-name>task-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.TaskServlet</servlet-class>
         <load-on-startup>6</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>actor-director-servlet</servlet-name>
-        <servlet-class>org.example.Servlets.Actor.ActorsDirectorsServlet</servlet-class>
+        <servlet-class>org.example.Servlets.TaskServlet</servlet-class>
         <load-on-startup>7</load-on-startup>
     </servlet>
     <servlet>
@@ -119,8 +119,8 @@
         <url-pattern>/actor-director-servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>last-years-servlet</servlet-name>
-        <url-pattern>/last-years-servlet</url-pattern>
+        <servlet-name>task-servlet</servlet-name>
+        <url-pattern>/task-servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>auth-servlet</servlet-name>

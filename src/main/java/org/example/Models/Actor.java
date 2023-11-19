@@ -24,10 +24,6 @@ public class Actor {
     private String fullName;
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
-    @ManyToMany
-    @JoinTable(
-            name = "actor_film",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
+    @ManyToMany(mappedBy = "actors", fetch = FetchType.EAGER)
     private List<Film> films;
 }

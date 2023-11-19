@@ -13,8 +13,16 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        table, th, td {
+            border: 3px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <title>Title</title>
 </head>
 <body>
+<table id="example" class="table table-striped table-bordered">
 <thead>
 <tr>
     <th>Id</th>
@@ -44,9 +52,78 @@
 <%
     }
 %>
+</tbody>
+</table>
+<br/><br/>
+<table id="example2" class="table table-striped table-bordered">
+<thead>
+<tr>
+    <th>Id</th>
+    <th>Full name</th>
+    <th>Date of birth</th>
+</tr>
+</thead>
+<tbody>
+<%
+    for(Actor actor : directors) {
+%>
+<tr>
+    <td>
+        <a href=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix + "/actor/" + actor.getId() %>>
+            <%=Integer.toString(actor.getId()) %>
+        </a>
+    </td>
+    <td><%=actor.getFullName() %></td>
+    <td><%=actor.getDateOfBirth().toString() %></td>
+</tr>
+<%
+    }
+%>
+</tbody>
+</table>
+<br/><br/>
+<%
+    if (actors != null) {
+%>
+<table id="example3" class="table table-striped table-bordered">
+<thead>
+<tr>
+    <th>Id</th>
+    <th>Full name</th>
+    <th>Date of birth</th>
+</tr>
+</thead>
+<tbody>
+<%
+    for(Actor actor : directors) {
+%>
+<tr>
+    <td>
+        <a href=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix + "/actor/" + actor.getId() %>>
+            <%=Integer.toString(actor.getId()) %>
+        </a>
+    </td>
+    <td><%=actor.getFullName() %></td>
+    <td><%=actor.getDateOfBirth().toString() %></td>
+</tr>
+<%
+    }
+%>
+</tbody>
+</table>
+<br/><br/>
+<%
+    }
+%>
+
+<form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/task" %>" method="post">
+    Number of films: <input type="text" name="num">
+    <input type="submit" value="Show" />
+</form>
+<br/><br/>
 <form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/task" %>" method="post">
     <input type="hidden" name="_method" value="DELETE"><jsp:text /></input>
-    Years: <input type="text">
+    Years: <input type="text" name="years">
     <input type="submit" value="Delete" />
 </form>
 </tbody>

@@ -65,7 +65,8 @@ public class FilmDao {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
             Query query = session
-                    .createNamedQuery("SELECT * FROM films WHERE :year = YEAR(issued_at) OR :year - 1 = YEAR(issued_at)",
+                    .createNativeQuery("SELECT * FROM films WHERE :year = EXTRACT(year FROM issued_at) OR " +
+                                    ":year - 1 = EXTRACT(year FROM issued_at)",
                     Film.class);
             query.setParameter("year", LocalDate.now().getYear());
 
@@ -78,7 +79,7 @@ public class FilmDao {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
             Query query = session
-                    .createNamedQuery("DELETE FROM films WHERE :year > YEAR(issued_at)",
+                    .createNativeQuery("DELETE FROM films WHERE :year > EXTRACT(year FROM issued_at)",
                             Film.class);
             query.setParameter("year", LocalDate.now().getYear() - age);
             query.executeUpdate();

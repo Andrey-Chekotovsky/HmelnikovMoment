@@ -37,19 +37,6 @@ public class ActorDao {
             return actor;
         }
     }
-    public List<Actor> getActors(List<Integer> ids)
-    {
-        try (Session session = factory.getCurrentSession()) {
-            session.beginTransaction();
-            List<Actor> actors = new ArrayList<>();
-            for (Integer id:
-                 ids) {
-                actors.add(session.get(Actor.class, id));
-            }
-            session.getTransaction().commit();
-            return actors;
-        }
-    }
     public void delete(int id)
     {
         try (Session session = factory.getCurrentSession()) {
@@ -65,6 +52,17 @@ public class ActorDao {
             List<Actor> actors =  session.createQuery("from Actor", Actor.class)
                     .list();
             session.getTransaction().commit();
+            return actors;
+        }
+    }
+    public List<Actor> getActorsWithNFilms(int n) {
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            List<Actor> actors =  session.createQuery("from Actor", Actor.class)
+                    .list();
+
+            session.getTransaction().commit();
+            actors = actors.stream().filter(x -> x.getFilms().size() >= n).toList();
             return actors;
         }
     }
