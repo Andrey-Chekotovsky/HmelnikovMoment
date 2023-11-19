@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +20,10 @@ public class ActorDao {
                 .addAnnotatedClass(Actor.class);
         factory = configuration.buildSessionFactory();
     }
-    public int create(Actor actor){
+    public int createOrUpdate(Actor actor){
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            session.persist(actor);
+            session.saveOrUpdate(actor);
             session.getTransaction().commit();
             return actor.getId();
         }
@@ -49,6 +48,15 @@ public class ActorDao {
             }
             session.getTransaction().commit();
             return actors;
+        }
+    }
+    public void delete(int id)
+    {
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            Actor actor = session.get(Actor.class, id);
+            session.delete(actor);
+            session.getTransaction().commit();
         }
     }
     public List<Actor> getActors() {

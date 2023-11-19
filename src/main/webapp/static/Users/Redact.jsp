@@ -1,4 +1,5 @@
-<%@ page import="org.example.Constants.WebConstants" %><%--
+<%@ page import="org.example.Constants.WebConstants" %>
+<%@ page import="org.example.Models.User" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 11/18/2023
@@ -13,9 +14,12 @@
 <body>
 <form action=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/profile"%> method="POST">
     <input type="hidden" name="_method" value="PUT"><jsp:text /></input>
-    Name: <input name="username" title="" />
+    <%
+        User user = (User) request.getAttribute("user");
+    %>
+    Name: <input name="username" value=<%=user.getUsername()%> />
     <br><br>
-    Password: <input  name="password"  />
+    Password: <input  name="password" value=<%=user.getPassword()%>  />
 
     <input type="submit"  />
 </form>

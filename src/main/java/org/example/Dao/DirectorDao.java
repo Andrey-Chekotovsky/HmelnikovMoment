@@ -18,12 +18,21 @@ public class DirectorDao {
                 .addAnnotatedClass(Actor.class);
         factory = configuration.buildSessionFactory();
     }
-    public int create(Director director){
+    public int createOrUpdate(Director director){
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            session.persist(director);
+            session.saveOrUpdate(director);
             session.getTransaction().commit();
             return director.getId();
+        }
+    }
+    public void delete(int id)
+    {
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            Director director = session.get(Director.class, id);
+            session.delete(director);
+            session.getTransaction().commit();
         }
     }
     public Director getDirector(int id)

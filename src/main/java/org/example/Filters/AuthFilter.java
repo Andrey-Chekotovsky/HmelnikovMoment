@@ -1,7 +1,6 @@
 package org.example.Filters;
 
 import org.example.Constants.WebConstants;
-import org.example.Servlets.AuthContext;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -27,13 +26,11 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("filter ");
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         Optional<Cookie> authData
                 = Arrays.stream(httpRequest.getCookies()).filter(cookie -> cookie.getName()
                 .equals(WebConstants.cookie)).findAny();
         if (!authData.isEmpty()) {
-            System.out.println(authData.get().getMaxAge() + " " + authData.get().getPath());
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

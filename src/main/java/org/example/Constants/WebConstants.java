@@ -1,5 +1,8 @@
 package org.example.Constants;
 
+import javax.servlet.http.Cookie;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.StringTokenizer;
 
 public class WebConstants {
@@ -20,5 +23,10 @@ public class WebConstants {
             id = tokenizer.nextToken();
         }
         return id;
+    }
+    static public int getUserIdFromCookies(Cookie[] cookies) {
+        Optional<Cookie> cookie = Arrays.stream(cookies).filter(x -> x.getName().equals(WebConstants.cookie))
+                .findAny();
+        return Integer.parseInt(cookie.get().getValue());
     }
 }

@@ -2,6 +2,7 @@ package org.example.Servlets.Film;
 
 import org.example.Constants.WebConstants;
 import org.example.Dao.FilmDao;
+import org.example.Dao.UserDao;
 import org.example.Models.Film;
 
 import javax.servlet.RequestDispatcher;
@@ -19,6 +20,7 @@ import java.util.StringTokenizer;
 @WebServlet(urlPatterns = { WebConstants.prefix + "/film/*"})
 public class FilmServlet extends HttpServlet {
     private FilmDao filmDao = new FilmDao();
+    private UserDao userDao = new UserDao();
     @Override
     public void init() throws ServletException {
         super.init();
@@ -36,17 +38,18 @@ public class FilmServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/static/Films/Film.jsp");
         String id = WebConstants.getUriId(req.getRequestURI());
         Film film = filmDao.getFilm(Integer.parseInt(id));
-        log(id);
         req.setAttribute("film", film);
+        int userId = WebConstants.getUserIdFromCookies(req.getCookies());
+        req.setAttribute("user", userDao.getUser(userId));
         dispatcher.forward(req, resp);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = WebConstants.getUriId(req.getRequestURL().toString());
-        System.out.println("Film id " + id);
         filmDao.delete(Integer.parseInt(id));
-
+        int userId = WebConstants.getUserIdFromCookies(req.getCookies());
+        req.setAttribute("user", userDao.getUser(userId));
         resp.sendRedirect("http://localhost:8080/JspApi_war" +WebConstants.prefix + "/films" );
     }
     @Override

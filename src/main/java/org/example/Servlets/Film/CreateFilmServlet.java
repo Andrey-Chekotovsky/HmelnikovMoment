@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @WebServlet(urlPatterns = { WebConstants.prefix + "/createFilm"})
@@ -56,7 +57,7 @@ public class CreateFilmServlet extends HttpServlet {
         int year = Integer.parseInt(req.getParameter("year"));
         int month = Integer.parseInt(req.getParameter("month"));
         int day = Integer.parseInt(req.getParameter("day"));
-        Date date = new Date(year, month, day);
+        Date date = new GregorianCalendar(year, month, day).getTime();
         Director director = directorDao.getDirector(Integer.parseInt(directorId));
         System.out.println(req.getAttribute("actors"));
         Film film = new Film().toBuilder()

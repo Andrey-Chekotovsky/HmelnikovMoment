@@ -1,5 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="org.example.Models.Actor" %><%--
+<%@ page import="org.example.Models.Actor" %>
+<%@ page import="org.example.Constants.WebConstants" %>
+<%@ page import="org.example.Models.User" %>
+<%@ page import="org.example.Models.Role" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 11/13/2023
@@ -28,12 +31,13 @@
     </thead>
     <tbody>
     <%
+        User user = (User) request.getAttribute("user");
         List<Actor> actors = (List) request.getAttribute("actors");
         for(Actor actor : actors) {
     %>
     <tr>
         <td>
-            <a href="http://localhost:8080/JspApi_war/actor/<%=Integer.toString(actor.getId()) %>">
+            <a href=<%="http://localhost:8080/JspApi_war" + WebConstants.prefix + "/actor/" + actor.getId() %>>
                 <%=Integer.toString(actor.getId()) %>
             </a>
         </td>
@@ -43,8 +47,16 @@
     <%
         }
     %>
-
     </tbody>
+    <%
+        if (user.getRole() == Role.ADMIN) {
+    %>
+    <form action="<%="http://localhost:8080/JspApi_war" + WebConstants.prefix +"/createActor"%>">
+        <input type="submit" value="Add" />
+    </form>
+    <%
+        }
+    %>
 </table>
 </body>
 </html>

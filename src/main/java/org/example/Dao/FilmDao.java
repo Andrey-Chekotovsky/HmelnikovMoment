@@ -41,7 +41,8 @@ public class FilmDao {
             session.getTransaction().commit();
             return film;
         }
-    }public void delete(int id)
+    }
+    public void delete(int id)
     {
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();

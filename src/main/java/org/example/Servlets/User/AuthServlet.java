@@ -2,9 +2,7 @@ package org.example.Servlets.User;
 
 import org.example.Constants.WebConstants;
 import org.example.Dao.UserDao;
-import org.example.Models.Role;
 import org.example.Models.User;
-import org.example.Servlets.AuthContext;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

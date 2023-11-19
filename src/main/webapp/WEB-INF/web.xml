@@ -64,6 +64,36 @@
         <servlet-class>org.example.Servlets.Film.CreateFilmServlet</servlet-class>
         <load-on-startup>12</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>director-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Director.DirectorServlet</servlet-class>
+        <load-on-startup>13</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>create-director-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Director.CreateDirectorServlet</servlet-class>
+        <load-on-startup>14</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>redact-director-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Director.RedactDirectorServlet</servlet-class>
+        <load-on-startup>15</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>redact-actor-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Actor.RedactActorServlet</servlet-class>
+        <load-on-startup>16</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>actor-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Actor.ActorServlet</servlet-class>
+        <load-on-startup>17</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>create-actor-servlet</servlet-name>
+        <servlet-class>org.example.Servlets.Actor.CreateActorServlet</servlet-class>
+        <load-on-startup>18</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>main-servlet</servlet-name>
         <url-pattern>/main-servlet</url-pattern>
@@ -111,6 +141,30 @@
     <servlet-mapping>
         <servlet-name>create-film-servlet</servlet-name>
         <url-pattern>/create-film-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>director-servlet</servlet-name>
+        <url-pattern>/director-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>create-director-servlet</servlet-name>
+        <url-pattern>/create-director-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>redact-director-servlet</servlet-name>
+        <url-pattern>/redact-director-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>actor-servlet</servlet-name>
+        <url-pattern>/actor-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>create-actor-servlet</servlet-name>
+        <url-pattern>/create-actor-servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>redact-actor-servlet</servlet-name>
+        <url-pattern>/redact-actor-servlet</url-pattern>
     </servlet-mapping>
 
 
